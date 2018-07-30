@@ -1,30 +1,15 @@
 pipeline {
   agent {
     docker {
-      image 'alpine'
-      args 'ls -l'
+      image 'node:6-alpine'
+      args '-p 3000:3000'
     }
 
   }
   stages {
-    stage('stage 123') {
+    stage('Build') {
       steps {
-        sh 'echo \'hehe\''
-      }
-    }
-    stage('stage 321') {
-      parallel {
-        stage('stage 321') {
-          steps {
-            sh 'export ASD=\'aaaaaaa\''
-            sh 'echo $ASD'
-          }
-        }
-        stage('') {
-          steps {
-            echo 'echo $ASD'
-          }
-        }
+        sh 'npm install'
       }
     }
   }
